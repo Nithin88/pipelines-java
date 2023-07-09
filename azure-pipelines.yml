@@ -36,37 +36,36 @@ steps:
     testResultsFiles: "**/TEST-*.xml"
     goals: "package"
 
-jobs:
-  - job: waitForValidation
-    displayName: Wait for external validation
-    pool: server
-    timeoutInMinutes: 4320 # job times out in 3 days
-    steps:
-      - task: ServiceNow-DevOps-Server-Change-Acceleration@1
-        inputs:
-          connectedServiceName: 'ServiceNow ITSM Pro Demo service connection'
-          changeRequestDetails: |
-            {
-                "setCloseCode" : true,
-                "attributes": {
-      - task: ServiceNow-DevOps-Server-Change-Acceleration@1
-        inputs:
-          connectedServiceName: 'ServiceNow ITSM Pro Demo service connection'
-          changeRequestDetails: |
-            {
-                "setCloseCode" : true,
-                "attributes": {
-                  "requested_by": {
-                    "name": "Azure Devops test user"
-                  },
-                  "start_date": "2021-01-05 08:00:00",
-                  "end_date": "2021-01-08 08:00:00"
-                }
+- job: waitForValidation
+  displayName: Wait for external validation
+  pool: server
+  timeoutInMinutes: 1 # job times out in 1 minute
+  steps:
+    - task: ServiceNow-DevOps-Server-Change-Acceleration@1
+      inputs:
+        connectedServiceName: 'ServiceNow ITSM Pro Demo service connection'
+        changeRequestDetails: |
+          {
+              "setCloseCode" : true,
+              "attributes": {
+    - task: ServiceNow-DevOps-Server-Change-Acceleration@1
+      inputs:
+        connectedServiceName: 'ServiceNow ITSM Pro Demo service connection'
+        changeRequestDetails: |
+          {
+              "setCloseCode" : true,
+              "attributes": {
+                "requested_by": {
+                  "name": "Azure Devops test user"
+                },
+                "start_date": "2021-01-05 08:00:00",
+                "end_date": "2021-01-08 08:00:00"
               }
-                  "requested_by": {
-                    "name": "test Azure Devops user"
-                  },
-                  "start_date": "2023-07-09 08:00:00",
-                  "end_date": "2023-07-09 08:00:00"
-                }
+            }
+                "requested_by": {
+                  "name": "test Azure Devops user"
+                },
+                "start_date": "2023-07-09 08:00:00",
+                "end_date": "2023-07-09 08:00:00"
               }
+            }
