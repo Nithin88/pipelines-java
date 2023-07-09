@@ -50,6 +50,6 @@ stages:
       - task: UpdateServiceNowChangeRequest@2
         inputs:
           ServiceNowConnection: 'ITSM Pro - ServiceNow service connection'
-          ChangeRequestNumber: 'CHG0001114'
-          NewStatus: '-4'
-          WorkNotes: 'Change is created via Azure Devops Pipeline!'
+          ChangeRequestNumber: 'CHG0000014'
+          NewStatus: '-2'
+          WorkNotes: 'Change is updated to Scheduled via Azure Devops Pipeline!'
