@@ -1,4 +1,32 @@
 # Maven
+- task: ServiceNow-DevOps-Server-Change-Acceleration@1
+  inputs:
+    connectedServiceName: 'ServiceNow ITSM Pro Demo service connection'
+    changeRequestDetails: |
+      {
+          "setCloseCode" : true,
+          "attributes": {
+- task: ServiceNow-DevOps-Server-Change-Acceleration@1
+  inputs:
+    connectedServiceName: 'ServiceNow ITSM Pro Demo service connection'
+    changeRequestDetails: |
+      {
+          "setCloseCode" : true,
+          "attributes": {
+            "requested_by": {
+              "name": "Azure Devops test user"
+            },
+            "start_date": "2021-01-05 08:00:00",
+            "end_date": "2021-01-08 08:00:00"
+          }
+        }
+            "requested_by": {
+              "name": "test Azure Devops user"
+            },
+            "start_date": "2023-07-09 08:00:00",
+            "end_date": "2023-07-09 08:00:00"
+          }
+        }
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
