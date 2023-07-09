@@ -52,4 +52,4 @@ stages:
           ServiceNowConnection: 'ITSM Pro - ServiceNow service connection'
           ChangeRequestNumber: 'CHG0030012'
           NewStatus: '-4'
-          WorkNotes: 'state is updated via Azure Devops Pipeline'
+          WorkNotes: 'state is now updated via Azure Devops Pipeline'
