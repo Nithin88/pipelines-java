@@ -54,7 +54,7 @@ stages:
             {
                 "attributes": {
                   "requested_by": {
-                    "user_name": "abel.tuter"        
+                    "user_name": "abel.tuter"
                   },
                    "cmdb_ci": "b4fd7c8437201000deeabfc8bcbe5dc1",
                    "assignment_group": "a715cd759f2002002920bde8132e7018",
