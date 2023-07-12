@@ -15,8 +15,32 @@ stages:
 - stage: ServiceNowDev
   displayName: 'Deploy to Dev'
   jobs:
+  - job: 'ServiceNowChangeRecord'
+    displayName: 'Trigger Change Record through DevOps'
+    pool:
+      name: Server
+    steps:
+      - task: ServiceNow-DevOps-Server-Change-Acceleration@1
+        inputs:
+          connectedServiceName: 'ServiceNow ITSM Pro Demo service connection'
+          changeRequestDetails: |
+            {
+                "setCloseCode" : false,
+                "attributes": {
+                  "requested_by": {
+                    "user_name": "abel.tuter"
+                  },
+                  "cmdb_ci": "b4fd7c8437201000deeabfc8bcbe5dc1",
+                  "assignment_group": "a715cd759f2002002920bde8132e7018",
+                  "start_date": "2023-07-11 05:30:00",
+                  "end_date": "2023-07-11 06:30:00"
+                }
+              }  
   - job: deploy_infratsructure
     displayName: Deploy to Dev
+    dependsOn:
+    - ServiceNowChangeRecord
+    condition: succeeded()
     strategy:
       matrix:
         jdk10_linux:
@@ -39,27 +63,3 @@ stages:
           publishJUnitResults: true
           testResultsFiles: "**/TEST-*.xml"
           goals: "package"
-  - job: 'ServiceNowChangeRecord'
-    displayName: 'Trigger Change Record through DevOps'
-    dependsOn:
-    - deploy_infratsructure
-    condition: succeeded()
-    pool:
-      name: Server
-    steps:
-      - task: ServiceNow-DevOps-Server-Change-Acceleration@1
-        inputs:
-          connectedServiceName: 'ServiceNow ITSM Pro Demo service connection'
-          changeRequestDetails: |
-            {
-                "setCloseCode" : false,
-                "attributes": {
-                  "requested_by": {
-                    "user_name": "abel.tuter"
-                  },
-                  "cmdb_ci": "b4fd7c8437201000deeabfc8bcbe5dc1",
-                  "assignment_group": "a715cd759f2002002920bde8132e7018",
-                  "start_date": "2023-07-11 05:30:00",
-                  "end_date": "2023-07-11 06:30:00"
-                }
-              }
